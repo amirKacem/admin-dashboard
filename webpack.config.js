@@ -2,72 +2,73 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+
+
 module.exports={
     devServer: {
-        
         static : {
             directory : path.join(__dirname, "dist")
           },
           port: 3000,
-          devMiddleware:{
-             publicPath: "https://localhost:3000/dist/",
-          },
           hot: "only"
     },
     entry:'./src/js/app.js',
     output: {
         filename:'app.js',
         path: path.resolve(__dirname,'dist/js'),
-        publicPath:'dist'
+        assetModuleFilename: 'img/[name][ext]'
+
     },
     module:{
         rules:[
+
+           
             {
-                test:/\.(.scss)$/,
+                test: /\.(scss)$/,
                 use:[
                     {
-                        loader:MiniCssExtractPlugin.loader,
+                        loader: MiniCssExtractPlugin.loader,
                     },
                     {
-                        loader:'css-loader'
+                        loader: 'css-loader'
                     },
                     {
-                        loader:'postcss-loader',
-                        options:{
-                            plugins: function(){
-                                return [
-                                    require('autoprefixer')
-                                ];
-                            }
-                        }
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                              plugins: [
+                                [
+                                  "autoprefixer",
+                                  {
+                                    // Options
+                                  },
+                                ],
+                              ],
+                            },
+                          },
                     },
                     {
-                        loader:'sass-loader'
+                        loader: 'sass-loader'
                     }
                 ]
             },
             {
-                test:/\.(.eot|woff|woff2|ttf|svg)(\?\S*)?$/,
-                use:[
-                    {
-                        loader:'file-loader',
-                        options:{
-                            name:'[name].[ext]',
-                            outputPath:'../fonts',
-                            publicPath:'../fonts'
-                            }
-                    }
-                ]
-            }
+                test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+                type: 'asset/resource',
+                generator: {
+                  filename: '../fonts/[name][ext]'
+                }
+            },
+         
         ]
     },
-    plugins:[
+    plugins: [
         new MiniCssExtractPlugin({
-            filename:'../css/main.css'
+            filename: '../css/app.css'
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
-            jQuery:'jquery'
+            jQuery: 'jquery'
         })
     ]
 }

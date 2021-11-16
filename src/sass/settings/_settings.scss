@@ -1,1 +1,14 @@
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+$primary: #08b456;
+$danger: #ff4136;
+$primary-color:#eee;
+// bootstrap
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/root";
+
+$theme-colors:(
+    "primary": $primary,
+    "danger": $danger
+);
+

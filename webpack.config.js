@@ -5,24 +5,30 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports={
+    mode: 'development',
     devServer: {
         static : {
             directory : path.join(__dirname, "dist")
           },
           port: 3000,
-          hot: "only"
+          open:true,
+          hot: "only",
+          watchFiles: [ 'dist/**/*'],
+          devMiddleware: {
+            writeToDisk: true,
+          },
+          
     },
     entry:'./src/js/app.js',
     output: {
         filename:'app.js',
         path: path.resolve(__dirname,'dist/js'),
+        publicPath:'/',
         assetModuleFilename: 'img/[name][ext]'
 
     },
     module:{
-        rules:[
-
-           
+        rules:[   
             {
                 test: /\.(scss)$/,
                 use:[
@@ -59,6 +65,10 @@ module.exports={
                   filename: '../fonts/[name][ext]'
                 }
             },
+            {
+                test: /\.css$/,
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+            }
          
         ]
     },

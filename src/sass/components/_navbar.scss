@@ -1,0 +1,6 @@
+.nav__list{
+    @include list-unstyled();
+    display: flex;
+    margin-bottom: 0;
+    justify-content: flex-end;
+}

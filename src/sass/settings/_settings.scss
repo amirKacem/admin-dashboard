@@ -1,7 +1,8 @@
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
-$primary: #08b456;
-$danger: #ff4136;
-$primary-color:#eee;
+$primary: #06BC9B;
+$header-nav-color:#eee;
+$app-font:"Lato";
+
 // bootstrap
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
@@ -9,6 +10,6 @@ $primary-color:#eee;
 
 $theme-colors:(
     "primary": $primary,
-    "danger": $danger
+    "success": $primary
 );
 

@@ -6,6 +6,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports={
     mode: 'development',
+    stats:{
+        errorDetails:true,
+    },
+    devtool:'eval',
     devServer: {
         static : {
             directory : path.join(__dirname, "dist")
@@ -22,12 +26,13 @@ module.exports={
     entry:'./src/js/app.js',
     output: {
         filename:'app.js',
-        path: path.resolve(__dirname,'dist/js'),
-        publicPath:'/',
-        assetModuleFilename: 'img/[name][ext]'
+        path: path.resolve(__dirname,'dist/js/'),
+        publicPath:'../../',
 
     },
     module:{
+     
+      
         rules:[   
             {
                 test: /\.(scss)$/,
@@ -36,7 +41,8 @@ module.exports={
                         loader: MiniCssExtractPlugin.loader,
                     },
                     {
-                        loader: 'css-loader'
+                        loader: 'css-loader',
+                      
                     },
                     {
                         loader: 'postcss-loader',
@@ -51,30 +57,35 @@ module.exports={
                                 ],
                               ],
                             },
-                          },
+                          }
                     },
                     {
-                        loader: 'sass-loader'
+                        loader: 'sass-loader',
+                
                     }
                 ]
+            },
+            {
+                test: /\.css$/,
+                use: [{ loader: 'style-loader', }, { loader: 'css-loader'
+            }]
             },
             {
                 test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
                 type: 'asset/resource',
                 generator: {
                   filename: '../fonts/[name][ext]'
+                  
                 }
-            },
-            {
-                test: /\.css$/,
-                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
             }
+         
          
         ]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '../css/app.css'
+            filename: '../css/app.css',
+            
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',

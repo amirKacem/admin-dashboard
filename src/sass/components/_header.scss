@@ -41,12 +41,16 @@
             flex: 1 0 auto;
             padding-right: 20px;
         }
+        &--dropdown{
+            padding: 0px;
+        }
         & .nav__item{
             color:#333;
             
             padding: 0px 10px ;
             &--search{
                 position: relative;
+                margin-right: auto;
                 @media (max-width:480px) {
                     display: none;
                 }
@@ -59,15 +63,24 @@
             }
             &--dropdown{
                 display: block;
-                padding: 5px;
+                padding: 5px 15px;
+                background-color: #efefef;
                 .nav__item{
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+                    padding: 10px;
+                    cursor: pointer;
                     &--link{
+                        color:#333;
                         text-decoration: none;
                         i{
                             margin-right: 15px;
                         }
                     }
+                    &:hover{
+                        background-color: #efefef;
+                    }
                 }
+                
             }
         }
     }

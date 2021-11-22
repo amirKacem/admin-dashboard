@@ -9864,12 +9864,16 @@ textarea.form-control-lg {
     padding-right: 20px;
   }
 }
+.header .nav__list--dropdown {
+  padding: 0px;
+}
 .header .nav__list .nav__item {
   color: #333;
   padding: 0px 10px;
 }
 .header .nav__list .nav__item--search {
   position: relative;
+  margin-right: auto;
 }
 @media (max-width: 480px) {
   .header .nav__list .nav__item--search {
@@ -9883,13 +9887,23 @@ textarea.form-control-lg {
 }
 .header .nav__list .nav__item--dropdown {
   display: block;
-  padding: 5px;
+  padding: 5px 15px;
+  background-color: #efefef;
+}
+.header .nav__list .nav__item--dropdown .nav__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  cursor: pointer;
 }
 .header .nav__list .nav__item--dropdown .nav__item--link {
+  color: #333;
   text-decoration: none;
 }
 .header .nav__list .nav__item--dropdown .nav__item--link i {
   margin-right: 15px;
+}
+.header .nav__list .nav__item--dropdown .nav__item:hover {
+  background-color: #efefef;
 }
 
 .sidebar {
